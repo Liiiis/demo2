@@ -1,8 +1,8 @@
 <template>
 
   <div class="phone">
-  <div class="top"><el-image src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/3cb0ff35ab6c9acfa96843752a8d4524.jpg?w=5120&h=1240&bg=F4F4F4"
-                             style="width: 100%;height: 600px"></el-image></div>
+    <div class="top"><el-image src="https://cdn.cnbj1.fds.api.mi-img.com/product-images/redmibook/pro15-intel7ecfae/specs-head.jpg"
+                               style="width: 100%;height: 600px"></el-image></div>
     <div class="phonelist">
       <ul>
         <li v-for="item in phonelist" :key="item.id">
@@ -27,11 +27,11 @@
 
 <script>
 export default {
-  name: "PhoneList",
+  name: "NootBook",
   data(){
     return{
       phonelist:[],
-      phone:"手机"
+      phone:"笔记本"
     }
   },
   methods:{

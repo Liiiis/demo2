@@ -1,7 +1,5 @@
 <template>
   <el-form label-width="120px">
-    <el-form-item label="编号"><el-input v-model="pform.number" size="small" />
-    </el-form-item>
     <el-form-item label="名称"><el-input v-model="pform.name" />
     </el-form-item>
     <el-form-item label="价格"><el-input v-model="pform.price" />
@@ -12,7 +10,15 @@
     </el-form-item>
     <el-form-item label="商品规格"><el-input v-model="pform.status"/>
     </el-form-item>
-    <el-form-item label="商品类别"><el-input v-model="pform.category"/>
+    <el-form-item label="商品类别">
+      <el-select v-model="pform.category">
+        <el-option label="手机" value="手机" />
+        <el-option label="智能穿戴" value="智能穿戴" />
+        <el-option label="笔记本" value="笔记本" />
+        <el-option label="家电" value="家电" />
+        <el-option label="运动出行" value="运动出行" />
+        <el-option label="日用百货" value="日用百货" />
+      </el-select>
     </el-form-item>
     <el-form-item  label="商品图片地址" >
       <el-input v-model="pform.path" :disabled="true" autocomplete="off" clearable/>
@@ -52,7 +58,7 @@ export default {
         stock:"",
         status:"",
         category:"",
-        path:""
+        path:"",
       },
       dialogImageUrl: '',
       dialogVisible: false,
@@ -84,13 +90,13 @@ export default {
     onSubmit(){
       this.$api.selectallp.post1("/addproduct",this.pform)
           .then(res=>{
-            console.log(this.pform)
+            console.log(res)
             ElMessage({
-              message: res.msg,
+              message: res.data,
               grouping: true,
               type: 'success',
             })
-            this.pform=[]
+            this.pform={}
           }).catch(err=>{
         console.log(err)
       })
@@ -102,5 +108,10 @@ export default {
 <style scoped>
 .el-input {
   width: 350px;
+}
+.el-form{
+  position: absolute;
+  top: 30%;
+  left: 30%;
 }
 </style>

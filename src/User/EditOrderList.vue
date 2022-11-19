@@ -5,33 +5,23 @@
       <el-form-item label="id">
         <el-input v-model="form.id" disabled />
       </el-form-item>
-      <el-form-item label="姓名">
-        <el-input v-model="form.name"  />
+      <el-form-item label="订单编号">
+        <el-input v-model="form.ordernumber"  />
       </el-form-item>
-      <el-form-item label="电话号码" >
-        <el-input v-model="form.phone" />
+      <el-form-item label="订单总价" >
+        <el-input v-model="form.sumPrice" />
       </el-form-item>
-      <el-form-item label="邮箱" >
-        <el-input v-model="form.email" />
-      </el-form-item>
-      <el-form-item label="地址">
-        <el-input v-model="form.address"/>
+      <el-form-item label="订单详情" >
+        <el-input v-model="form.shoppingcar" />
       </el-form-item>
       <el-form-item label="创建时间">
         <el-input v-model="form.ctime" disabled/>
-      </el-form-item>
-      <el-form-item label="修改时间" >
-        <el-input v-model="form.uptime" disabled/>
-      </el-form-item>
-      <el-form-item label="备注" >
-        <el-input v-model="form.beizhu"/>
       </el-form-item>
     </el-form>
     <template #footer>
       <span class="dialog-footer">
         <el-button @click="cancel" >取消</el-button>
-        <el-button type="primary" @click="handlesure">确定</el-button
-        >
+        <el-button type="primary" @click="handlesure">确定</el-button>
       </span>
     </template>
   </el-dialog>
@@ -41,21 +31,19 @@
 import {ElMessage} from "element-plus";
 
 export default {
-  name: "EditUser",
+  name: "EditOrderList",
   data(){
     return{
       form:{
         id:"",
-        name:"",
-        phone:"",
-        email:"",
-        address:"",
+        ordernumber:"",
+        sumPrice:"",
+        shoppingcar:"",
         ctime:"",
-        uptime:"",
-        beizhu:"",
       }
     }
-  },props:{
+  },
+  props:{
     dialogFormVisible:{
       default:false
     },
@@ -67,10 +55,9 @@ export default {
   methods:{
     cancel(){
       this.$emit("update:dialogFormVisible",false)
-      this.$refs["form"].resetFields()
     },
     handleopen(){
-      this.$api.user.selectbyid("/selectuserbyid",{'id': this.id})
+      this.$api.user.selectbyid("/selectbyidorder",{'id': this.id})
           .then(res=>{
             this.form=res.data
           }).catch(err=>{
@@ -78,18 +65,18 @@ export default {
       })
     },
     handlesure(){
-      this.$api.user.updatauser("/updatauser",this.form)
+      this.$api.user.updatauser("/updataorder",this.form)
           .then(res=>{
             ElMessage({
               message: res.data,
               grouping: true,
               type: 'success',
             })
-           this.$emit("updateSuccess")
+            this.$emit("updateSuccess")
           }).catch(err=>{
         console.log(err)
       })
-    }
+    },
   }
 }
 </script>

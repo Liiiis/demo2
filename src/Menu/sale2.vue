@@ -1,9 +1,9 @@
 <template>
 
-<div  class="echart"
-      id="mychart"
-      :style="{ float: 'left', width: '50%', height: '400px' }"
-    ></div>
+  <div  class="echart"
+        id="mychart"
+        :style="{ float: 'left', width: '50%', height: '400px' }"
+  ></div>
 
   <div id="chartPie" style="width:400px; height:550px;"></div>
   <div id="chartline" :style="{ float: 'left', width: '50%', height: '400px' }"></div>
@@ -15,30 +15,34 @@ export default {
   name: "AsaleB",
   data(){
     return{
-        countdata:[],
-        cateorydata:[],
-        bing:[],//类别销量饼形图;
-        catlegend:[],//类别销量图例
+      sumdata:[],//一天的销售总额
+      cateorydata:[],//日期
+      bing:[],//类别销量饼形图;
+      catlegend:[],//类别销量图例
     }
   },
   mounted() {
-    this.getcount()
-    this.getcateory()
+    this.getsum()
+    this.getdata()
     this.getbing()
   },
   methods:{
-    getcount(){
-      this.$api.selectallp.selectallp("/selectgeshu")
+    getsum(){  //销售额 一天
+      this.$api.selectallp.selectallp("/selectsumPrice")
           .then(res=>{
-           this.countdata=res.data
+            for (var i=0;i<res.data.length;i++){
+              this.sumdata.push(res.data[i].value)
+            }
           }).catch(err=>{
         console.log(err)
       })
     },
-    getcateory(){
-      this.$api.selectallp.selectallp("/selececateory")
+    getdata(){
+      this.$api.selectallp.selectallp("/selectsumPrice")  //日期
           .then(res=>{
-            this.cateorydata=res.data
+            for (var i=0;i<res.data.length;i++){
+              this.cateorydata.push(res.data[i].name)
+            }
             this.initEcharts()
             this.initzhexian()
           }).catch(err=>{
@@ -46,7 +50,7 @@ export default {
       })
     },
     getbing(){
-      this.$api.selectallp.selectallp("/selectbing")
+      this.$api.selectallp.selectallp("/selectsumPrice")
           .then(res=>{
             this.bing=res.data
             for (var i=0;i<res.data.length;i++){
@@ -65,7 +69,7 @@ export default {
         },
         tooltip: {},
         legend: {
-          data: ["销量"]
+          data: ["销售额"]
         },
         xAxis: {
           data: this.cateorydata
@@ -73,9 +77,9 @@ export default {
         yAxis: {},
         series: [
           {
-            name: "销量",
+            name: "销售额",
             type: "bar", //类型为柱状图
-            data: this.countdata
+            data: this.sumdata
           }
         ]
       };
@@ -139,7 +143,7 @@ export default {
         series: [
           {
             name: "销量",
-            data: this.countdata,
+            data: this.sumdata,
             type: "line", // 类型设置为折线图
             label: {
               show: true,
@@ -172,7 +176,7 @@ export default {
 }
 #chartPie{
   left: 1100px;
-  height: 700px;
+  height: 800px;
   top: 30px;
   width: 800px;
 }

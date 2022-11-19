@@ -1,14 +1,14 @@
 <template>
+
   <div class="common-layout">
     <el-container>
-      <el-aside  style="background-color: #545c64;height: 100vh;" :width="asideWidth"><Aside></Aside></el-aside>
+      <el-header><Header></Header></el-header>
       <el-container>
-        <el-header><Header></Header></el-header>
+        <el-aside width="200px" style="background-color: #545c64;height: 100vh;" ><Aside></Aside></el-aside>
         <el-main><MainContent></MainContent></el-main>
       </el-container>
     </el-container>
   </div>
-
 </template>
 
 <script>
@@ -32,6 +32,10 @@ export default {
 </script>
 
 <style scoped>
+*{
+  margin: 0;
+  padding: 0;
+}
 .common-layout{
   padding: 0;
 }

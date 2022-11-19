@@ -8,16 +8,18 @@
       <el-table
           :data="UsertableData"
           style="width: 100%"
+          border
           :row-class-name="tableRowClassName"
           @selection-change="handleSelectionChange">
         <el-table-column type="selection" width="55" />
         <el-table-column prop="id" label="id" width="120" />
         <el-table-column prop="name" label="姓名" width="120"  />
         <el-table-column prop="phone" label="电话号码" width="150" />
-        <el-table-column prop="email" label="邮箱" width="200" />
-        <el-table-column prop="sex" label="性别" width="120"  />
-        <el-table-column prop="ctime" label="添加时间" width="300" />
-        <el-table-column prop="uptime" label="修改时间" width="300" />
+        <el-table-column prop="email" label="邮箱" width="250" />
+        <el-table-column prop="address" label="地址" width="120"  />
+        <el-table-column prop="ctime" label="添加时间" width="200" />
+        <el-table-column prop="uptime" label="修改时间" width="200" />
+        <el-table-column prop="beizhu" label="备注" width="120"  />
         <el-table-column label="Operations">
           <template #default="scope">
             <el-button type="success" round @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
@@ -75,19 +77,29 @@ export default {
       })
     },
     handleDelete(index, row){
-      this.$api.user.deletebyid("/deluser",{'id': row.id})
-          .then(res=>{
-            ElMessage({
-              message: res.data,
-              grouping: true,
-              type: 'success',
-            })
-            this.getUserInfo()
-          }).catch(err=>{
-        console.log(err)
+      this.$confirm('确定删除吗？', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(()=> {
+        this.$api.user.deletebyid("/deluser", {'id': row.id})
+            .then(res => {
+              ElMessage({
+                message: res.data,
+                grouping: true,
+                type: 'success',
+              })
+              this.getUserInfo()
+            }).catch(err => {
+          console.log(err)
+        })
+      }).catch((err)=>{
+        this.$message({
+          type: 'error！',
+          message: err
+        })
       })
     }
-
   }
 }
 </script>

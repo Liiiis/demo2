@@ -19,15 +19,15 @@
 <!--        </el-sub-menu>-->
         <el-menu-item index="1">
           <el-icon><Monitor /></el-icon>
-          <router-link to="/Home/shop"> <el-menu-item index="1-1"><span>首页</span></el-menu-item></router-link>
+          <router-link to=""> <el-menu-item index="1-1"><span>首页</span></el-menu-item></router-link>
         </el-menu-item>
         <el-sub-menu :index="2">
           <template #title>
             <el-icon ><shop></shop></el-icon>
             <span>商品管理</span>
           </template>
-          <router-link to="/Home/addproduct"> <el-menu-item index="1-1"><el-icon><Grid /></el-icon>添加商品</el-menu-item></router-link>
-          <router-link to="/Home/ProManger"> <el-menu-item index="1-2"><el-icon><Grid /></el-icon>商品列表</el-menu-item></router-link>
+          <router-link to="/Home/addproduct"> <el-menu-item index="2-1"><el-icon><Grid /></el-icon>添加商品</el-menu-item></router-link>
+          <router-link to="/Home/ProManger"> <el-menu-item index="2-2"><el-icon><Grid /></el-icon>商品列表</el-menu-item></router-link>
         </el-sub-menu>
 
         <el-sub-menu :index="3">
@@ -35,8 +35,8 @@
             <el-icon ><user></user></el-icon>
             <span>用户管理</span>
           </template>
-          <router-link to="/Home/adduser"> <el-menu-item index="1-1"><el-icon><Grid /></el-icon>添加用户</el-menu-item></router-link>
-          <router-link to="/Home/UserManager"> <el-menu-item index="1-2"><el-icon><Grid /></el-icon>用户列表</el-menu-item></router-link>
+          <router-link to="/Home/adduser"> <el-menu-item index="3-1"><el-icon><Grid /></el-icon>添加用户</el-menu-item></router-link>
+          <router-link to="/Home/UserManager"> <el-menu-item index="3-2"><el-icon><Grid /></el-icon>用户列表</el-menu-item></router-link>
         </el-sub-menu>
 
         <el-sub-menu :index="4">
@@ -44,17 +44,31 @@
             <el-icon ><Histogram></Histogram></el-icon>
             <span>销售分析</span>
           </template>
-          <router-link to="/Home/sale"> <el-menu-item index="1-1"><el-icon><Grid /></el-icon>商品列表</el-menu-item></router-link>
+          <router-link to="/Home/sale"> <el-menu-item index="4-1"><el-icon><Grid /></el-icon>类别销量</el-menu-item></router-link>
+          <router-link to="/Home/sale2"> <el-menu-item index="4-2"><el-icon><Grid /></el-icon>日期销售额</el-menu-item></router-link>
         </el-sub-menu>
 
         <el-sub-menu :index="5">
           <template #title>
-            <el-icon ><Histogram></Histogram></el-icon>
-            <span>歌单</span>
+            <el-icon><DocumentRemove /></el-icon>
+            <span>订单管理</span>
           </template>
-          <router-link to="/Home/addsonglist"> <el-menu-item index="1-1"><el-icon><Grid /></el-icon>添加歌单</el-menu-item></router-link>
-          <router-link to="/Home/SongListall"> <el-menu-item index="1-2"><el-icon><Grid /></el-icon>歌单列表</el-menu-item></router-link>
+          <router-link to="/Home/OrderList"> <el-menu-item index="5-1"><el-icon><Grid /></el-icon>订单列表</el-menu-item></router-link>
         </el-sub-menu>
+
+        <el-sub-menu :index="6">
+          <template #title>
+            <el-icon ><user></user></el-icon>
+            <span>员工管理</span>
+          </template>
+          <router-link to="/Home/addemployee"> <el-menu-item index="6-1"><el-icon><Grid /></el-icon>添加员工</el-menu-item></router-link>
+          <router-link to="/Home/EmployeeList"> <el-menu-item index="6-2"><el-icon><Grid /></el-icon>员工列表</el-menu-item></router-link>
+        </el-sub-menu>
+
+        <el-menu-item index="7">
+          <el-icon><SwitchButton /></el-icon>
+          <router-link to="/"> <el-menu-item index="7-1"><span>退出</span></el-menu-item></router-link>
+        </el-menu-item>
       </el-menu>
 </template>
 

@@ -1,8 +1,8 @@
 <template>
 
   <div class="phone">
-  <div class="top"><el-image src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/3cb0ff35ab6c9acfa96843752a8d4524.jpg?w=5120&h=1240&bg=F4F4F4"
-                             style="width: 100%;height: 600px"></el-image></div>
+    <div class="top"><el-image src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/d0c29c67a79668528f4e28f21a212e3d.jpg?w=5120&h=1240&bg=D1E3FB"
+                               style="width: 100%;height: 600px"></el-image></div>
     <div class="phonelist">
       <ul>
         <li v-for="item in phonelist" :key="item.id">
@@ -31,7 +31,7 @@ export default {
   data(){
     return{
       phonelist:[],
-      phone:"手机"
+      phone:"家电"
     }
   },
   methods:{

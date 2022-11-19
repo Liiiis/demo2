@@ -1,8 +1,10 @@
 <template>
 
   <div class="phone">
-  <div class="top"><el-image src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/3cb0ff35ab6c9acfa96843752a8d4524.jpg?w=5120&h=1240&bg=F4F4F4"
-                             style="width: 100%;height: 600px"></el-image></div>
+    <div class="top"><video autoplay="autoplay" loop="loop" id="video" x-webkit-airplay="true" webkit-playsinline="true" muted="">
+      <source src="https://cdn.cnbj1.fds.api.mi-img.com/product-images/xiaomiwatchcolor2p4b1/video-play.mp4" type="video/mp4">
+    </video>
+    </div>
     <div class="phonelist">
       <ul>
         <li v-for="item in phonelist" :key="item.id">
@@ -27,11 +29,11 @@
 
 <script>
 export default {
-  name: "PhoneList",
+  name: "WatchList",
   data(){
     return{
       phonelist:[],
-      phone:"手机"
+      phone:"智能穿戴"
     }
   },
   methods:{

@@ -1,19 +1,22 @@
 <template>
-  <el-form label-width="120px" :model="form" :rules="rules" ref="form">
-    <el-form-item label="用户名">
+  <el-form label-width="120px" :model="form" ref="form">
+    <el-form-item label="姓名">
       <el-input v-model="form.name" />
     </el-form-item>
     <el-form-item label="手机号码">
       <el-input v-model="form.phone"/>
     </el-form-item>
-    <el-form-item label="email">
-      <el-input v-model="form.email" />
+    <el-form-item label="性别">
+      <el-input v-model="form.gender" />
     </el-form-item>
-    <el-form-item label="地址">
-      <el-input v-model="form.address" />
+    <el-form-item label="身份证号">
+      <el-input v-model="form.identity" />
+    </el-form-item>
+    <el-form-item label="职位">
+      <el-input v-model="form.position" />
     </el-form-item>
     <el-form-item label="备注">
-      <el-input v-model="form.beizhu" />
+      <el-input v-model="form.remark" />
     </el-form-item>
     <el-form-item>
       <el-button type="primary" @click="onSubmit">确定</el-button>
@@ -29,18 +32,18 @@ export default {
   data(){
     return{
       form:{
+        number:"",
         name:"",
         phone:"",
-        email:"",
-        address:"",
-        beizhu:'',
+        gender:"",
+        identity:"",
+        position:"",
+        remark:""
       },
-      rules: {
       }
-    }
   },methods:{
     onSubmit(){
-      this.$api.user.adduser("/adduser",this.form)
+      this.$api.user.adduser("/addemployee",this.form)
           .then(res=>{
             ElMessage({
               message: res.data,
@@ -53,7 +56,7 @@ export default {
       this.form={}
     },
     resetForm() {
-      this.$refs.form.resetFields()
+      this.form={}
     }
   }
 }

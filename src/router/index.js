@@ -6,15 +6,58 @@ import UserManager from "@/User/UserManager";
 import sale from "@/Menu/sale";
 import addproduct from "@/Menu/addproduct"
 import adduser from "@/User/adduser"
-import addsonglist from "@/song/addsonglist";
-import SongListall from "@/song/SongListall";
 import shop from "@/Menu/shop";
+import Detial from "@/Menu/Detial";
+import ShopCar from "@/Menu/ShopCar";
+import sale2 from "@/Menu/sale2";
+import PhoneList from "@/Menu/PhoneList";
+import WatchList from "@/Menu/WatchList";
+import NootBook from "@/Menu/NootBook";
+import OrderList from "@/User/OrderList";
+import addemployee from "@/employee/addemployee";
+import EmployeeList from "@/employee/EmployeeList";
+import AppLiance from "@/Menu/AppLiance";
 
 const routes=[
     {
-        path:'/',
+        path:'/login',
         name:'Login',
         component:login
+    },
+    {
+        path:'/',
+        name:'shop',
+        component:shop
+    },
+    {
+        path:'/Detial',
+        name:'Detial',
+        component:Detial
+    },
+    {
+        path:'/ShopCar',
+        name:'ShopCar',
+        component:ShopCar
+    },
+    {
+        path:'/PhoneList',
+        name:'PhoneList',
+        component:PhoneList
+    },
+    {
+        path:'/WatchList',
+        name:'WatchList',
+        component:WatchList
+    },
+    {
+        path:'/NootBook',
+        name:'NootBook',
+        component:NootBook
+    },
+    {
+        path:'/AppLiance',
+        name:' AppLiance',
+        component: AppLiance
     },
     {
         path:'/Home',
@@ -47,20 +90,26 @@ const routes=[
                 component:adduser
             },
             {
-                path:'addsonglist',
-                name:'addsonglist',
-                component:addsonglist
+                path:'sale2',
+                name:'sale2',
+                component:sale2
             },
             {
-                path:'SongListall',
-                name:'SongListall',
-                component:SongListall
+                path:'OrderList',
+                name:'OrderList',
+                component:OrderList
             },
             {
-                path:'shop',
-                name:'shop',
-                component:shop
+                path:'addemployee',
+                name:'addemployee',
+                component: addemployee
             },
+            {
+                path:'EmployeeList',
+                name:'EmployeeList',
+                component:EmployeeList
+            },
+
         ]
     },
 ]

@@ -17,7 +17,7 @@
       <el-form-item label="成本">
         <el-input v-model="form.cost"/>
       </el-form-item>
-      <el-form-item label="数量">
+      <el-form-item label="添加数量">
         <el-input v-model="form.stock"/>
       </el-form-item>
       <el-form-item label="商品规格" >
@@ -27,31 +27,31 @@
         <el-input v-model="form.category"/>
       </el-form-item>
       <el-form-item label="图片">
-        <el-input v-model="form.path"/>
+        <el-image :src=form.path style="width:100px;height:100px;border:none;"></el-image>
       </el-form-item>
     </el-form>
     <template #footer>
       <span class="dialog-footer">
         <el-button @click="cancel" >Cancel</el-button>
-        <el-button type="primary"
-        >Confirm</el-button
-        >
+        <el-button type="primary" @click="handleupdata">Confirm</el-button>
       </span>
     </template>
   </el-dialog>
 </template>
 
 <script >
+import {ElMessage} from "element-plus";
+
 export default {
   name: "EditProduct",
   data(){
     return{
       form:{
-        id:"-1",
-        number:"1",
-        name:"1",
-        price:"1",
-        cost:"1",
+        id:"",
+        number:"",
+        name:"",
+        price:"",
+        cost:"",
         stock:"",
         status:"",
         category:"",
@@ -76,7 +76,21 @@ export default {
       this.$api.selectallp.selectbyid("/selectbyid",{'id': this.id})
           .then(res=>{
             this.form=res.data.data
+            this.form.stock=0
             console.log(this.form)
+          }).catch(err=>{
+        console.log(err)
+      })
+    },
+    handleupdata(){
+      this.$api.selectallp.post1("/updataproduct",this.form)
+          .then(res=>{
+            ElMessage({
+              message: res.data,
+              grouping: true,
+              type: 'success',
+            })
+            this.$emit("updateSuccess")
           }).catch(err=>{
         console.log(err)
       })
